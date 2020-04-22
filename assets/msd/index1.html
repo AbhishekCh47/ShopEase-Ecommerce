@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title> Image Slider </title>
+	<script>
+	var slideIndex = -1;
+	var n = 5;
+	function showSS(){
+		plusSlide();
+		setTimeout(showSS, 2000);
+	}
+	function plusSlide(){
+		slideIndex += 1;
+		slideIndex = slideIndex % n;
+		obj.getdetails();
+		obj.getDesc();
+	}
+	var obj = {
+			xhr1 : new XMLHttpRequest(),
+			xhr2 : new XMLHttpRequest(),
+			getdetails : function()
+			{
+				var fd= new FormData();
+				fd.append("id",slideIndex);
+				this.xhr1.onreadystatechange=this.showmedia;
+				this.xhr1.open("POST","http://localhost/PhpstormProjects/final/frontend/src/assets/msd/getImage.php",true);
+				this.xhr1.responseType = "blob";
+				this.xhr1.send(fd);
+
+			},
+			getDesc : function()
+			{
+				this.xhr2.onreadystatechange = this.showdetails;
+				this.xhr2.open("GET","http://localhost/PhpstormProjects/final/frontend/src/assets/msd/getDetail.php?id="+slideIndex.toString(), true);
+				this.xhr2.send();
+			},
+			showmedia : function()
+			{
+				if(this.readyState == 4 && this.status == 200){
+					var data = this.response;
+					i=document.createElement("img");
+					i.src=URL.createObjectURL(data);
+					i.width="300";
+					i.height="200";
+					var med = document.getElementById("img");
+					while (med.firstChild)
+					{
+						med.removeChild(med.firstChild);
+					}
+					med.appendChild(i);
+				}
+			},
+			showdetails : function()
+			{
+				if(this.readyState == 4 && this.status == 200)
+				{
+					var info = this.response;
+					var txt = document.getElementById("txt");
+					txt.innerHTML="";
+					txt.innerHTML = info;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1> Items </h1>
+	<p>Quick glance at our products</p><br>
+	<div id = "img"> </div><br>
+	<div id="txt"> </div>
+	<script> showSS(); </script>
+
+  <h1><p>Based on your interests</p></h1>
+  <h3>***Please visit homepage to buy the products***</h3>
+
+  <img src="/assets/img/b.jpeg">
+  <img src="/assets/img/d.jpeg">
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2>Have a nice day, Thank you:)</h2>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+<div class="section"  >
+  <h3><p>Your Order has been placed..</p></h3>
+  <h6>****If any queries about delivery please contact us****</h6>
+  <br>
+  <br>
+  <br>
+  <br><br>
+
+
+</div>
+
+<h1>
+  {{title}}
+</h1>
+<br>
+<table border=1 style="margin-left: auto;margin-right: auto;">
+  <caption>Products Rating</caption>
+  <tr>
+    <td style="width: 50px;text-align: center;">Id</td>
+    <td>Items</td>
+    <td>Rating</td>
+
+  </tr>
+  <tr *ngFor="let record of recordList">
+    <td>{{record.Id}}</td>
+    <td style="height: 200px;width: 200px;"><img style="height: 200px;width: 200px;" src="{{record.Framework}}"> </td>
+    <td>
+      <a *ngFor="let item of record.myList; let i=index " (click)="setStarTable(record,i)">
+        <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<!--
+<button style="margin-left:auto;margin-right:auto;display:block;" class=" btn-sm my-2 btn-block order-submit" (click)="router.navigate(['/thankyou']);">
+  <span>Place Order</span>
+</button>
+<button style="margin: auto;display: block;" (click)="router.navigate(['/secondary']);">
+-->
+
+<a href="http://localhost:4200/assets/msd/index.html" style="margin:auto;display:block;text-align: center;" class="btn-sm my-2 btn-block btn-danger order-submit"><span>Next Page</span></a>
+ <a href="http://localhost:4200/assets/msd/index1.html" class="btn-sm" style="margin: auto;display: block;text-align: center;"><span></span></a>
+
+
