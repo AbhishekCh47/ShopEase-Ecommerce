@@ -43,7 +43,7 @@ This project is a comprehensive online shopping platform where users can browse,
 5. Open the website in your browser at `http://localhost:3000`.
 
 ## Future Enhancements
-- **Payment Gateway Integration**: Adding secure payment options for a complete checkout experience.
+- **Payment Gateway Integration**: Adding secure payment options for a complete checkout experience
 - **User Reviews**: Allowing customers to leave reviews for products.
 - **Order Tracking**: Implementing an order tracking system for users to follow their purchases in real-time.
 
